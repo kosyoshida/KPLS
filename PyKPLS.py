@@ -33,7 +33,7 @@ def single_comp(K,Y):
     Kres=Hres.dot(K).dot(Hres)
     Yres=Hres.dot(Y)
     
-    return Kres,Yres,u_new,t_new
+    return Kres,Yres,u_new,t_new,c
     
 def make_kernel(X,kernel):
     n=X.shape[0]
@@ -76,8 +76,9 @@ Y=np.array([-1,1,1])
 plt.imshow(K)
 plt.show()
 
-Kres,Yres,u,v=single_comp(K,Y)
+Kres,Yres,u,v,c=single_comp(K,Y)
 print Kres
 print Yres
 print u
 print v
+print c
