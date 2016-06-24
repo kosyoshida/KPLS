@@ -26,8 +26,11 @@ def KPLS(K,Y,k=1):
         U[:,i]=u_new
         T[:,i]=t_new
         C[:,i]=c
-        
-    return U,T,C
+    
+    A=np.linalg.inv(T.T.dot(K).dot(U))
+    D=U.dot(A).dot(T.T).dot(Y)
+    
+    return D,U,T,C
         
 def single_comp(K,Y):
     n=K.shape[0]
