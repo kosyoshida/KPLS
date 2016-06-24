@@ -7,6 +7,29 @@ import numpy as np
 from numpy.linalg import norm
 import matplotlib.pylab as plt
 
+def KPLS(K,Y,k=1):
+    n=X.shape[0]
+    if Y.ndim>1:
+        q=Y.shape[1]
+    else:
+        q=1
+    
+    # result storage
+    U=np.empty([n,k])
+    T=np.empty([n,k])
+    C=np.empty([q,k])
+
+    # initialize
+    Kres=K
+    Yres=Y
+    for i in range(k):
+        Kres,Yres,u_new,t_new,c=single_comp(Kres,Yres)
+        U[:,i]=u_new
+        T[:,i]=t_new
+        C[:,i]=c
+        
+    return U,T,C
+        
 def single_comp(K,Y):
     n=K.shape[0]
     
@@ -73,12 +96,7 @@ np.random.seed(1)
 X=np.arange(6).reshape(3,2)
 K=make_kernel(X,'rbf')
 Y=np.array([-1,1,1])
-plt.imshow(K)
-plt.show()
-
-Kres,Yres,u,v,c=single_comp(K,Y)
-print Kres
-print Yres
-print u
-print v
-print c
+U,T,C=KPLS(K,Y,k=2)
+print U
+print T
+print C
