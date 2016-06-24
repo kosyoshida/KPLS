@@ -5,10 +5,9 @@ Kernel Partial Least Squares Regression in Python.
 
 import numpy as np
 from numpy.linalg import norm
-import matplotlib.pylab as plt
 
 def KPLS(K,Y,k=1):
-    n=X.shape[0]
+    n=K.shape[0]
     if Y.ndim>1:
         q=Y.shape[1]
     else:
@@ -94,13 +93,3 @@ def center_kernel(K):
     K=H.dot(K).dot(H)
     
     return K
-
-np.random.seed(1)
-    
-X=np.arange(6).reshape(3,2)
-K=make_kernel(X,'rbf')
-Y=np.array([-1,1,1])
-U,T,C=KPLS(K,Y,k=2)
-print U
-print T
-print C
