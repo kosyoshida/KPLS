@@ -61,6 +61,10 @@ def single_comp(K,Y):
 def make_kernel(X,kernel):
     n=X.shape[0]
     
+    if kernel=='linear':
+        K=X.dot(X.T)
+        K=center_kernel(K)
+    
     if kernel=='poly2':
         K=(X.dot(X.T)+np.ones([n,n]))**2
         K=center_kernel(K)
