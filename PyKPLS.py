@@ -62,6 +62,8 @@ def single_comp(K,Y):
     
 def make_kernel(X,kernel):
     n=X.shape[0]
+    if X.ndim==1:
+        X=X[:,np.newaxis]
     
     if kernel=='linear':
         K=X.dot(X.T)
